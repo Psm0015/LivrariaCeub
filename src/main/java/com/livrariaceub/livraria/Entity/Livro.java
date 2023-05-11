@@ -1,10 +1,11 @@
 package com.livrariaceub.livraria.Entity;
 
 /**
- * Classe que representa um Beneficiario
+ * Classe que representa um Livro
  * @author Pedro Mota
  *
  */
+
 public class Livro {
 
     private int id;
