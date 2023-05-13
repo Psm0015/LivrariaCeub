@@ -19,8 +19,16 @@ public class LivroRepositoryJDBC {
     }
 
     public void save(Livro livro) {
-        String sql = "INSERT INTO livros (titulo, autor) VALUES (?, ?)";
-        jdbcTemplate.update(sql,livro.getTitulo(), livro.getAutor());
+        String sql = "INSERT INTO livros (id, titulo, autor) VALUES (?, ?, ?)";
+        
+        // Obter o ID do último livro inserido
+        String lastIdSql = "SELECT MAX(id) FROM livros";
+        int lastId = jdbcTemplate.queryForObject(lastIdSql, Integer.class);
+        
+        // Adicionar +1 ao último ID
+        int novoId = lastId + 1;
+        
+        jdbcTemplate.update(sql, novoId, livro.getTitulo(), livro.getAutor());
     }
 
     public void update(Livro livro) {
